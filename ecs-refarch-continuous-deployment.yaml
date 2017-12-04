@@ -26,7 +26,7 @@ Parameters:
 
   KeyName:
     Type: AWS::EC2::KeyPair::KeyName
-    Default: "ecs-refarch-continuous-deployment.pem"
+    Default: "ecs-refarch-continuous-deployment"
     Description: Name of an existing EC2 KeyPair to enable SSH access to the EC2 instances
 
 
