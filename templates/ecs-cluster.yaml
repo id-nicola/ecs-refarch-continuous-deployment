@@ -3,6 +3,11 @@ Parameters:
     Type: String
     Default: t2.large
 
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: "ecs-refarch-continuous-deployment.pem"
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the EC2 instances
+
   ClusterSize:
     Type: Number
     Default: 1
@@ -136,6 +141,7 @@ Resources:
     Properties:
       ImageId: !FindInMap [ AWSRegionToAMI, !Ref "AWS::Region", AMI ]
       InstanceType: !Ref InstanceType
+      KeyName: !Ref 'KeyName'
       IamInstanceProfile: !Ref InstanceProfile
       SecurityGroups:
         - !Ref SecurityGroup

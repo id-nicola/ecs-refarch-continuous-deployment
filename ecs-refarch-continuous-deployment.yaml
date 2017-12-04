@@ -24,6 +24,11 @@ Parameters:
     Description: >
       Token for the user specified above. (https://github.com/settings/tokens)
 
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: "ecs-refarch-continuous-deployment.pem"
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the EC2 instances
+
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -55,6 +60,7 @@ Resources:
         SourceSecurityGroup: !GetAtt LoadBalancer.Outputs.SecurityGroup
         Subnets: !GetAtt VPC.Outputs.Subnets
         VpcId: !GetAtt VPC.Outputs.VpcId
+        KeyName: !Ref 'KeyName'
 
   DeploymentPipeline:
     Type: AWS::CloudFormation::Stack
